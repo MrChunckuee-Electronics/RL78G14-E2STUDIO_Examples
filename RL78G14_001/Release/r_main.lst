@@ -1,0 +1,85 @@
+   1                             	r8	=	0xffef0
+   2                             	r16	=	0xffee8
+   3                             	r24	=	0xffee0
+   4                             	r9	=	0xffef1
+   5                             	r17	=	0xffee9
+   6                             	r25	=	0xffee1
+   7                             	r10	=	0xffef2
+   8                             	r18	=	0xffeea
+   9                             	r26	=	0xffee2
+  10                             	r11	=	0xffef3
+  11                             	r19	=	0xffeeb
+  12                             	r27	=	0xffee3
+  13                             	r12	=	0xffef4
+  14                             	r20	=	0xffeec
+  15                             	r28	=	0xffee4
+  16                             	r13	=	0xffef5
+  17                             	r21	=	0xffeed
+  18                             	r29	=	0xffee5
+  19                             	r14	=	0xffef6
+  20                             	r22	=	0xffeee
+  21                             	r30	=	0xffee6
+  22                             	r15	=	0xffef7
+  23                             	r23	=	0xffeef
+  24                             	r31	=	0xffee7
+  25                             		.section	.text.R_MAIN_UserInit,"ax",@progbits
+  26                             		.global	_R_MAIN_UserInit
+  28                             	_R_MAIN_UserInit:
+  29                             	 ; 82 "../src/r_main.c" 1
+  30 0000 71 7A FA                		ei
+  31                             	 ; 0 "" 2
+  32                             	 ; 83 "../src/r_main.c" 1
+  33 0003 71 7B FA                		di
+  34                             	 ; 0 "" 2
+  35 0006 FC 00 00 00             		call	!!_R_WDT_Create
+  36 000a FC 00 00 00             		call	!!_R_CGC_Create
+  37 000e FC 00 00 00             		call	!!_R_PORT_Create
+  38 0012 D7                      		ret
+  40                             		.section	.text.delayMs,"ax",@progbits
+  41                             		.global	_delayMs
+  43                             	_delayMs:
+  44                             		; start of function
+  45                             		; locals: 2 bytes
+  46 0000 20 02                   		subw	sp, #2
+  47 0002 A8 06                   		movw	ax, [sp+6]
+  48 0004 BD F0                   		movw	r8, ax
+  49                             	.L3:
+  50 0006 B6 F0                   		decw	r8
+  51 0008 AD F0                   		movw	ax, r8
+  52 000a 44 FF FF                		cmpw	ax, #-1 
+  53 000d 61 F8                   		sknz 
+  54 000f EC 26 00 00             		br	!!.L9
+  55 0013 F6                      		clrw	ax
+  56                             	.L7:
+  57 0014 B8 00                   		movw	[sp], ax
+  58 0016 44 E7 03                		cmpw	ax, #999 
+  59 0019 61 F3                   		sknh 
+  60 001b EC 06 00 00             		br	!!.L3
+  61 001f A8 00                   		movw	ax, [sp]
+  62 0021 A1                      		incw	ax
+  63 0022 EC 14 00 00             		br	!!.L7
+  64                             	.L9:
+  65 0026 10 02                   		addw	sp, #2
+  66 0028 D7                      		ret
+  68                             		.section	.text.startup.main,"ax",@progbits
+  69                             		.global	_main
+  71                             	_main:
+  72                             		; start of function
+  73                             		; outgoing: 2 bytes
+  74 0000 20 02                   		subw	sp, #2
+  75 0002 FC 00 00 00             		call	!!_R_MAIN_UserInit
+  76                             	.L11:
+  77 0006 8F 06 FF                		mov	a, !-250
+  78 0009 6C 04                   		or	a, #4
+  79 000b 9F 06 FF                		mov	!-250, a
+  80 000e 30 E8 03                		movw	ax, #1000
+  81 0011 B8 00                   		movw	[sp], ax
+  82 0013 FC 00 00 00             		call	!!_delayMs
+  83 0017 8F 06 FF                		mov	a, !-250
+  84 001a 5C FB                   		and	a, #-5
+  85 001c 9F 06 FF                		mov	!-250, a
+  86 001f 30 E8 03                		movw	ax, #1000
+  87 0022 B8 00                   		movw	[sp], ax
+  88 0024 FC 00 00 00             		call	!!_delayMs
+  89 0028 EC 06 00 00             		br	!!.L11
+  91                             		.ident	"GCC: (GNU) 4.8-GNURL78_v13.02 20121219 (experimental) (Red Hat/devo) [trunk revision 19449

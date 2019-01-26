@@ -1,0 +1,219 @@
+
+Discarded input sections
+
+ .debug_line    0x00000000       0x79 ./src/r_reset_program.o
+ .debug_info    0x00000000       0x8c ./src/r_reset_program.o
+ .debug_abbrev  0x00000000       0x14 ./src/r_reset_program.o
+ .debug_aranges
+                0x00000000       0x20 ./src/r_reset_program.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+VEC              0x00000000         0x00000004
+IVEC             0x00000004         0x000000bc
+OPT              0x000000c0         0x00000004
+SEC_ID           0x000000c4         0x0000000a
+OCDSTAD          0x000000ce         0x0000000a
+OCDROM           0x0003fe00         0x00000200
+ROM              0x000000d8         0x0003fd28
+RAM              0x000f9f00         0x00005fff
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.vec            0x00000000        0x4
+ *(.vec)
+ .vec           0x00000000        0x4 ./src/r_cg_vector_table.o
+                0x00000000                HardwareVectors
+
+.vects          0x00000004       0x7c
+ *(.vects)
+ .vects         0x00000004       0x7c ./src/r_cg_vector_table.o
+                0x00000004                Vectors
+
+.option_bytes   0x000000c0        0x4
+ *(.option_bytes)
+ .option_bytes  0x000000c0        0x4 ./src/r_cg_vector_table.o
+                0x000000c0                Option_Bytes
+
+.security_id    0x000000c4        0xa
+ *(.security_id)
+ .security_id   0x000000c4        0xa ./src/r_cg_vector_table.o
+                0x000000c4                Security_Id
+
+.text           0x000000d8      0x17a
+ *(.text)
+ .text          0x000000d8        0x0 ./src/r_cg_cgc.o
+ .text          0x000000d8        0x0 ./src/r_cg_cgc_user.o
+ .text          0x000000d8        0x0 ./src/r_cg_port.o
+ .text          0x000000d8        0x0 ./src/r_cg_port_user.o
+ .text          0x000000d8        0x0 ./src/r_cg_vector_table.o
+ .text          0x000000d8        0x0 ./src/r_cg_wdt.o
+ .text          0x000000d8        0x0 ./src/r_cg_wdt_user.o
+ .text          0x000000d8        0x0 ./src/r_hardware_setup.o
+ .text          0x000000d8        0x0 ./src/r_main.o
+ .text          0x000000d8       0x60 ./src/r_reset_program.o
+                0x000000da                PowerON_Reset
+ *(.text.*)
+ .text.R_CGC_Create
+                0x00000138       0x43 ./src/r_cg_cgc.o
+                0x00000138                R_CGC_Create
+ .text.R_CGC_Get_ResetSource
+                0x0000017b        0x4 ./src/r_cg_cgc_user.o
+                0x0000017b                R_CGC_Get_ResetSource
+ .text.R_PORT_Create
+                0x0000017f        0x9 ./src/r_cg_port.o
+                0x0000017f                R_PORT_Create
+ .text.R_Dummy  0x00000188        0xc ./src/r_cg_vector_table.o
+                0x00000188                R_Dummy
+ .text.R_WDT_Create
+                0x00000194       0x28 ./src/r_cg_wdt.o
+                0x00000194                R_WDT_Create
+ .text.R_WDT_Restart
+                0x000001bc        0x5 ./src/r_cg_wdt.o
+                0x000001bc                R_WDT_Restart
+ .text.r_wdt_interrupt
+                0x000001c1        0x1 ./src/r_cg_wdt_user.o
+                0x000001c1                r_wdt_interrupt
+ .text.R_Systeminit
+                0x000001c2       0x1c ./src/r_hardware_setup.o
+                0x000001c2                R_Systeminit
+ .text.HardwareSetup
+                0x000001de        0xc ./src/r_hardware_setup.o
+                0x000001de                HardwareSetup
+ .text.R_MAIN_UserInit
+                0x000001ea       0x13 ./src/r_main.o
+                0x000001ea                R_MAIN_UserInit
+ .text.delayMs  0x000001fd       0x29 ./src/r_main.o
+                0x000001fd                delayMs
+ .text.startup.main
+                0x00000226       0x2c ./src/r_main.o
+                0x00000226                main
+                0x00000252                etext = .
+                0x00000252                . = ALIGN (0x2)
+
+.plt            0x00000252        0x0
+ .plt           0x00000252        0x0 ./src/r_cg_vector_table.o
+
+.init
+ *(.init)
+
+.fini
+ *(.fini)
+
+.got
+ *(.got)
+ *(.got.plt)
+
+.rodata         0x00003000        0x0
+                0x00003000                . = ALIGN (0x2)
+ *(.rodata)
+ *(.rodata.*)
+                0x00003000                _erodata = .
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.jcr
+ *(.jcr)
+
+.tors           0x00000252        0x0
+                0x00000252                __CTOR_LIST__ = .
+                0x00000252                . = ALIGN (0x2)
+                0x00000252                ___ctors = .
+ *(.ctors)
+                0x00000252                ___ctors_end = .
+                0x00000252                __CTOR_END__ = .
+                0x00000252                __DTOR_LIST__ = .
+                0x00000252                ___dtors = .
+ *(.dtors)
+                0x00000252                ___dtors_end = .
+                0x00000252                __DTOR_END__ = .
+                0x00000252                . = ALIGN (0x2)
+                0x00000252                _mdata = .
+
+.data           0x000f9f00        0x0 load address 0x00000252
+                0x000f9f00                . = ALIGN (0x2)
+                0x000f9f00                _data = .
+ *(.data)
+ .data          0x000f9f00        0x0 ./src/r_cg_cgc.o
+ .data          0x000f9f00        0x0 ./src/r_cg_cgc_user.o
+ .data          0x000f9f00        0x0 ./src/r_cg_port.o
+ .data          0x000f9f00        0x0 ./src/r_cg_port_user.o
+ .data          0x000f9f00        0x0 ./src/r_cg_vector_table.o
+ .data          0x000f9f00        0x0 ./src/r_cg_wdt.o
+ .data          0x000f9f00        0x0 ./src/r_cg_wdt_user.o
+ .data          0x000f9f00        0x0 ./src/r_hardware_setup.o
+ .data          0x000f9f00        0x0 ./src/r_main.o
+ .data          0x000f9f00        0x0 ./src/r_reset_program.o
+ *(.data.*)
+                0x000f9f00                . = ALIGN (0x2)
+                0x000f9f00                _edata = .
+
+.bss            0x000f9f00        0x0 load address 0x00000252
+                0x000f9f00                . = ALIGN (0x2)
+                0x000f9f00                _bss = .
+ *(.bss)
+ .bss           0x000f9f00        0x0 ./src/r_cg_cgc.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_cgc_user.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_port.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_port_user.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_vector_table.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_wdt.o
+ .bss           0x000f9f00        0x0 ./src/r_cg_wdt_user.o
+ .bss           0x000f9f00        0x0 ./src/r_hardware_setup.o
+ .bss           0x000f9f00        0x0 ./src/r_main.o
+ .bss           0x000f9f00        0x0 ./src/r_reset_program.o
+ *(.bss.**)
+                0x000f9f00                . = ALIGN (0x2)
+ *(COMMON)
+                0x000f9f00                . = ALIGN (0x2)
+                0x000f9f00                _ebss = .
+                0x000f9f00                _end = .
+
+.stack          0x000ffe00        0x0
+                0x000ffe00                _stack = .
+
+.ocd_traceram
+ *(.ocd_traceram)
+LOAD ./src/r_cg_cgc.o
+LOAD ./src/r_cg_cgc_user.o
+LOAD ./src/r_cg_port.o
+LOAD ./src/r_cg_port_user.o
+LOAD ./src/r_cg_vector_table.o
+LOAD ./src/r_cg_wdt.o
+LOAD ./src/r_cg_wdt_user.o
+LOAD ./src/r_hardware_setup.o
+LOAD ./src/r_main.o
+LOAD ./src/r_reset_program.o
+LOAD libRL78G14_001.a
+START GROUP
+LOAD C:\Users\mrchu_000\My Documents\e2_studio\workspace\RL78G14_001\Release\libRL78G14_001.a
+LOAD C:\Renesas\E2_STU~1\GNURL7~1.02-\rl78-ELF/lib/gcc/rl78-elf//4.8-GNURL78_v13.02\libgcc.a
+END GROUP
+OUTPUT(RL78G14_001.x elf32-rl78)
+
+.comment        0x00000000       0x5d
+ .comment       0x00000000       0x5d ./src/r_cg_cgc.o
+                                 0x5e (size before relaxing)
+ .comment       0x00000000       0x5e ./src/r_cg_cgc_user.o
+ .comment       0x00000000       0x5e ./src/r_cg_port.o
+ .comment       0x00000000       0x5e ./src/r_cg_port_user.o
+ .comment       0x00000000       0x5e ./src/r_cg_vector_table.o
+ .comment       0x00000000       0x5e ./src/r_cg_wdt.o
+ .comment       0x00000000       0x5e ./src/r_cg_wdt_user.o
+ .comment       0x00000000       0x5e ./src/r_hardware_setup.o
+ .comment       0x00000000       0x5e ./src/r_main.o
+
+.debug_line
+
+.debug_info
+
+.debug_abbrev
+
+.debug_aranges

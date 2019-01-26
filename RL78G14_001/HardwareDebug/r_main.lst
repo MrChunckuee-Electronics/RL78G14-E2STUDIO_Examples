@@ -1,0 +1,240 @@
+   1                             	r8	=	0xffef0
+   2                             	r16	=	0xffee8
+   3                             	r24	=	0xffee0
+   4                             	r9	=	0xffef1
+   5                             	r17	=	0xffee9
+   6                             	r25	=	0xffee1
+   7                             	r10	=	0xffef2
+   8                             	r18	=	0xffeea
+   9                             	r26	=	0xffee2
+  10                             	r11	=	0xffef3
+  11                             	r19	=	0xffeeb
+  12                             	r27	=	0xffee3
+  13                             	r12	=	0xffef4
+  14                             	r20	=	0xffeec
+  15                             	r28	=	0xffee4
+  16                             	r13	=	0xffef5
+  17                             	r21	=	0xffeed
+  18                             	r29	=	0xffee5
+  19                             	r14	=	0xffef6
+  20                             	r22	=	0xffeee
+  21                             	r30	=	0xffee6
+  22                             	r15	=	0xffef7
+  23                             	r23	=	0xffeef
+  24                             	r31	=	0xffee7
+  25                             	.text
+  26                             	.Ltext0:
+  27                             		.global	_main
+  29                             	_main:
+  30                             	.LFB0:
+  31                             		.file 1 "../src/r_main.c"
+   1:../src/r_main.c **** /**************************************************************************************************
+   2:../src/r_main.c **** * DISCLAIMER
+   3:../src/r_main.c **** * This software is supplied by Renesas Electronics Corporation and is only 
+   4:../src/r_main.c **** * intended for use with Renesas products. No other uses are authorized. This 
+   5:../src/r_main.c **** * software is owned by Renesas Electronics Corporation and is protected under 
+   6:../src/r_main.c **** * all applicable laws, including copyright laws.
+   7:../src/r_main.c **** * THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING 
+   8:../src/r_main.c **** * THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT 
+   9:../src/r_main.c **** * LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+  10:../src/r_main.c **** * AND NON-INFRINGEMENT.  ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED.
+  11:../src/r_main.c **** * TO THE MAXIMUM EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS 
+  12:../src/r_main.c **** * ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES SHALL BE LIABLE 
+  13:../src/r_main.c **** * FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR 
+  14:../src/r_main.c **** * ANY REASON RELATED TO THIS SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE 
+  15:../src/r_main.c **** * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+  16:../src/r_main.c **** * Renesas reserves the right, without notice, to make changes to this software 
+  17:../src/r_main.c **** * and to discontinue the availability of this software.  By using this software, 
+  18:../src/r_main.c **** * you agree to the additional terms and conditions found by accessing the 
+  19:../src/r_main.c **** * following link:
+  20:../src/r_main.c **** * http://www.renesas.com/disclaimer
+  21:../src/r_main.c **** *
+  22:../src/r_main.c **** * Copyright (C) 2011, 2013 Renesas Electronics Corporation. All rights reserved.
+  23:../src/r_main.c **** ***************************************************************************************************
+  24:../src/r_main.c **** 
+  25:../src/r_main.c **** /**************************************************************************************************
+  26:../src/r_main.c **** * File Name    : r_main.c
+  27:../src/r_main.c **** * Version      : CodeGenerator for RL78/G14 V2.01.00.02 [09 Aug 2013]
+  28:../src/r_main.c **** * Device(s)    : R5F104PJ
+  29:../src/r_main.c **** * Tool-Chain   : GCCRL78
+  30:../src/r_main.c **** * Description  : This file implements main function.
+  31:../src/r_main.c **** * Creation Date: 04/10/2018
+  32:../src/r_main.c **** ***************************************************************************************************
+  33:../src/r_main.c **** 
+  34:../src/r_main.c **** /**************************************************************************************************
+  35:../src/r_main.c **** Includes
+  36:../src/r_main.c **** ***************************************************************************************************
+  37:../src/r_main.c **** #include "r_cg_macrodriver.h"
+  38:../src/r_main.c **** #include "r_cg_cgc.h"
+  39:../src/r_main.c **** #include "r_cg_port.h"
+  40:../src/r_main.c **** /* Start user code for include. Do not edit comment generated here */
+  41:../src/r_main.c **** /* End user code. Do not edit comment generated here */
+  42:../src/r_main.c **** #include "r_cg_userdefine.h"
+  43:../src/r_main.c **** 
+  44:../src/r_main.c **** /**************************************************************************************************
+  45:../src/r_main.c **** Global variables and functions
+  46:../src/r_main.c **** ***************************************************************************************************
+  47:../src/r_main.c **** /* Start user code for global. Do not edit comment generated here */
+  48:../src/r_main.c **** void delayMs(uint16_t ms);
+  49:../src/r_main.c **** /* End user code. Do not edit comment generated here */
+  50:../src/r_main.c **** void R_MAIN_UserInit(void);
+  51:../src/r_main.c **** 
+  52:../src/r_main.c **** /**************************************************************************************************
+  53:../src/r_main.c **** * Function Name: main
+  54:../src/r_main.c **** * Description  : This function implements main function.
+  55:../src/r_main.c **** * Arguments    : None
+  56:../src/r_main.c **** * Return Value : None
+  57:../src/r_main.c **** ***************************************************************************************************
+  58:../src/r_main.c **** void main(void)
+  59:../src/r_main.c **** {
+  32                             		.loc 1 59 0 is_stmt 1
+  33                             		; start of function
+  34                             		; outgoing: 2 bytes
+  35 0000 20 02                   		subw	sp, #2
+  36                             	.LCFI0:
+  60:../src/r_main.c ****     R_MAIN_UserInit();
+  37                             		.loc 1 60 0
+  38 0002 FC 00 00 00             		call	!!_R_MAIN_UserInit
+  39                             	.L2:
+  61:../src/r_main.c ****     /* Start user code. Do not edit comment generated here */
+  62:../src/r_main.c ****     while (1U)
+  63:../src/r_main.c ****     {
+  64:../src/r_main.c ****     	P6_bit.no2 = 1;
+  40                             		.loc 1 64 0 discriminator 1
+  41 0006 C9 F0 06 FF             		movw	r8, #-250
+  42 000a AD F0                   		movw	ax, r8
+  43 000c BD F4                   		movw	r12, ax
+  44 000e FA F4                   		movw	hl, r12
+  45 0010 8B                      		mov	a, [hl]
+  46 0011 9D F2                   		mov	r10, a
+  47 0013 6A F2 04                		or	r10, #4
+  48 0016 AD F0                   		movw	ax, r8
+  49 0018 DA F4                   		movw	bc, r12
+  50 001a 8D F2                   		mov	a, r10
+  51 001c 48 00 00                		mov	[bc], a
+  65:../src/r_main.c **** 		delayMs(1000);
+  52                             		.loc 1 65 0 discriminator 1
+  53 001f 30 E8 03                		movw	ax, #1000
+  54 0022 B8 00                   		movw	[sp], ax
+  55 0024 FC 00 00 00             		call	!!_delayMs
+  66:../src/r_main.c **** 		P6_bit.no2 = 0;
+  56                             		.loc 1 66 0 discriminator 1
+  57 0028 C9 F0 06 FF             		movw	r8, #-250
+  58 002c AD F0                   		movw	ax, r8
+  59 002e BD F4                   		movw	r12, ax
+  60 0030 FA F4                   		movw	hl, r12
+  61 0032 8B                      		mov	a, [hl]
+  62 0033 9D F2                   		mov	r10, a
+  63 0035 5A F2 FB                		and	r10, #-5
+  64 0038 AD F0                   		movw	ax, r8
+  65 003a DA F4                   		movw	bc, r12
+  66 003c 8D F2                   		mov	a, r10
+  67 003e 48 00 00                		mov	[bc], a
+  67:../src/r_main.c **** 		delayMs(1000);
+  68                             		.loc 1 67 0 discriminator 1
+  69 0041 30 E8 03                		movw	ax, #1000
+  70 0044 B8 00                   		movw	[sp], ax
+  71 0046 FC 00 00 00             		call	!!_delayMs
+  68:../src/r_main.c ****     }
+  72                             		.loc 1 68 0 discriminator 1
+  73 004a EC 06 00 00             		br	!!.L2
+  74                             	.LFE0:
+  76                             		.global	_R_MAIN_UserInit
+  78                             	_R_MAIN_UserInit:
+  79                             	.LFB1:
+  69:../src/r_main.c ****     /* End user code. Do not edit comment generated here */
+  70:../src/r_main.c **** }
+  71:../src/r_main.c **** 
+  72:../src/r_main.c **** 
+  73:../src/r_main.c **** /**************************************************************************************************
+  74:../src/r_main.c **** * Function Name: R_MAIN_UserInit
+  75:../src/r_main.c **** * Description  : This function adds user code before implementing main function.
+  76:../src/r_main.c **** * Arguments    : None
+  77:../src/r_main.c **** * Return Value : None
+  78:../src/r_main.c **** ***************************************************************************************************
+  79:../src/r_main.c **** void R_MAIN_UserInit(void)
+  80:../src/r_main.c **** {
+  80                             		.loc 1 80 0
+  81:../src/r_main.c ****     /* Start user code. Do not edit comment generated here */
+  82:../src/r_main.c ****     EI();
+  81                             		.loc 1 82 0
+  82                             	 ; 82 "../src/r_main.c" 1
+  83 004e 71 7A FA                		ei
+  84                             	 ; 0 "" 2
+  83:../src/r_main.c ****     DI();
+  85                             		.loc 1 83 0
+  86                             	 ; 83 "../src/r_main.c" 1
+  87 0051 71 7B FA                		di
+  88                             	 ; 0 "" 2
+  84:../src/r_main.c ****     R_WDT_Create();
+  89                             		.loc 1 84 0
+  90 0054 FC 00 00 00             		call	!!_R_WDT_Create
+  85:../src/r_main.c ****     R_CGC_Create();
+  91                             		.loc 1 85 0
+  92 0058 FC 00 00 00             		call	!!_R_CGC_Create
+  86:../src/r_main.c ****     R_PORT_Create();
+  93                             		.loc 1 86 0
+  94 005c FC 00 00 00             		call	!!_R_PORT_Create
+  87:../src/r_main.c ****     /* End user code. Do not edit comment generated here */
+  88:../src/r_main.c **** }
+  95                             		.loc 1 88 0
+  96 0060 D7                      		ret
+  97                             	.LFE1:
+  99                             		.global	_delayMs
+ 101                             	_delayMs:
+ 102                             	.LFB2:
+  89:../src/r_main.c **** 
+  90:../src/r_main.c **** /* Start user code for adding. Do not edit comment generated here */
+  91:../src/r_main.c **** void delayMs(uint16_t ms)
+  92:../src/r_main.c **** {
+ 103                             		.loc 1 92 0
+ 104                             		; start of function
+ 105                             		; locals: 6 bytes
+ 106 0061 20 06                   		subw	sp, #6
+ 107                             	.LCFI1:
+  93:../src/r_main.c ****     volatile uint16_t count;
+  94:../src/r_main.c ****     while (ms-- != 0)
+ 108                             		.loc 1 94 0
+ 109 0063 EC 86 00 00             		br	!!.L5
+ 110                             	.L8:
+  95:../src/r_main.c ****     {
+  96:../src/r_main.c ****         for(count=0; count<1000; count++);
+ 111                             		.loc 1 96 0
+ 112 0067 F6                      		clrw	ax
+ 113 0068 B8 04                   		movw	[sp+4], ax
+ 114 006a EC 79 00 00             		br	!!.L6
+ 115                             	.L7:
+ 116                             		.loc 1 96 0 is_stmt 0 discriminator 2
+ 117 006e A8 04                   		movw	ax, [sp+4]
+ 118 0070 B8 02                   		movw	[sp+2], ax
+ 119 0072 B8 00                   		movw	[sp], ax
+ 120 0074 A1                      		incw	ax
+ 121 0075 BD F0                   		movw	r8, ax
+ 122 0077 B8 04                   		movw	[sp+4], ax
+ 123                             	.L6:
+ 124                             		.loc 1 96 0 discriminator 1
+ 125 0079 A8 04                   		movw	ax, [sp+4]
+ 126 007b BD F0                   		movw	r8, ax
+ 127 007d 44 E7 03                		cmpw	ax, #999 
+ 128 0080 61 E3                   		skh 
+ 129 0082 EC 6E 00 00             		br	!!.L7
+ 130                             	.L5:
+  94:../src/r_main.c ****     while (ms-- != 0)
+ 131                             		.loc 1 94 0 is_stmt 1 discriminator 1
+ 132 0086 A8 0A                   		movw	ax, [sp+10]
+ 133 0088 BD F0                   		movw	r8, ax
+ 134 008a B1                      		decw	ax
+ 135 008b B8 0A                   		movw	[sp+10], ax
+ 136 008d AD F0                   		movw	ax, r8
+ 137 008f 44 00 00                		cmpw	ax, #0 
+ 138 0092 61 E8                   		skz 
+ 139 0094 EC 67 00 00             		br	!!.L8
+  97:../src/r_main.c ****     }
+  98:../src/r_main.c **** }
+ 140                             		.loc 1 98 0
+ 141 0098 10 06                   		addw	sp, #6
+ 142 009a D7                      		ret
+ 143                             	.LFE2:
+ 195                             	.Letext0:
+ 196                             		.file 2 "../src/iodefine.h"
+ 197                             		.file 3 "../src/r_cg_macrodriver.h"

@@ -1,0 +1,53 @@
+   1                             	r8	=	0xffef0
+   2                             	r16	=	0xffee8
+   3                             	r24	=	0xffee0
+   4                             	r9	=	0xffef1
+   5                             	r17	=	0xffee9
+   6                             	r25	=	0xffee1
+   7                             	r10	=	0xffef2
+   8                             	r18	=	0xffeea
+   9                             	r26	=	0xffee2
+  10                             	r11	=	0xffef3
+  11                             	r19	=	0xffeeb
+  12                             	r27	=	0xffee3
+  13                             	r12	=	0xffef4
+  14                             	r20	=	0xffeec
+  15                             	r28	=	0xffee4
+  16                             	r13	=	0xffef5
+  17                             	r21	=	0xffeed
+  18                             	r29	=	0xffee5
+  19                             	r14	=	0xffef6
+  20                             	r22	=	0xffeee
+  21                             	r30	=	0xffee6
+  22                             	r15	=	0xffef7
+  23                             	r23	=	0xffeef
+  24                             	r31	=	0xffee7
+  25                             		.section	.text.R_CGC_Create,"ax",@progbits
+  26                             		.global	_R_CGC_Create
+  28                             	_R_CGC_Create:
+  29 0000 CF A0 FF 41             		mov	!-96, #65
+  30 0004 CF A3 FF 07             		mov	!-93, #7
+  31 0008 8F A1 FF                		mov	a, !-95
+  32 000b 5C 7F                   		and	a, #127
+  33 000d 9F A1 FF                		mov	!-95, a
+  34                             	.L3:
+  35 0010 8F A2 FF                		mov	a, !-94
+  36 0013 9D F0                   		mov	r8, a
+  37 0015 4A F0 FF                		cmp	r8, #-1 
+  38 0018 61 E8                   		skz 
+  39 001a EC 10 00 00             		br	!!.L3
+  40 001e 8F A4 FF                		mov	a, !-92
+  41 0021 6C 10                   		or	a, #16
+  42 0023 9F A4 FF                		mov	!-92, a
+  43 0026 8F A1 FF                		mov	a, !-95
+  44 0029 6C 40                   		or	a, #64
+  45 002b 9F A1 FF                		mov	!-95, a
+  46 002e CF F3 00 10             		mov	!243, #16
+  47 0032 8F A4 FF                		mov	a, !-92
+  48 0035 5C BF                   		and	a, #-65
+  49 0037 9F A4 FF                		mov	!-92, a
+  50 003a 8F A1 FF                		mov	a, !-95
+  51 003d 5C FE                   		and	a, #-2
+  52 003f 9F A1 FF                		mov	!-95, a
+  53 0042 D7                      		ret
+  55                             		.ident	"GCC: (GNU) 4.8-GNURL78_v13.02 20121219 (experimental) (Red Hat/devo) [trunk revision 19449
