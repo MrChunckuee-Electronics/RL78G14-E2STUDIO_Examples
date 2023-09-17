@@ -2,4 +2,4 @@
 
 Ejemplos sobre RL78G14 de Renesas
 
-https://mrchunckuee.blogspot.com/search/label/RL78G14%20Renesas 
+https://mrchunckuee.blogspot.com/p/yrdkrl78g14-renesas-demonstration-kit.html
